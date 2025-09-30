@@ -1,0 +1,155 @@
+﻿@model IEnumerable<MatriculasEAD.Models.Curso>
+
+@{
+    ViewData["Title"] = "Gerenciar Cursos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+        <i class="fas fa-book text-success"></i> Gerenciar Cursos
+    </h1>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="fas fa-plus"></i> Novo Curso
+    </a>
+</div>
+
+<!-- Formulário de Busca -->
+<div class="search-form">
+    <form asp-action="Index" method="get" class="row g-3">
+        <div class="col-md-10">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type="text" class="form-control" name="searchString" 
+                       value="@ViewBag.SearchString" placeholder="Buscar por título ou descrição..." />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-outline-success w-100">
+                <i class="fas fa-search"></i> Buscar
+            </button>
+        </div>
+    </form>
+    @if (!string.IsNullOrEmpty(ViewBag.SearchString))
+    {
+        <div class="mt-2">
+            <small class="text-muted">
+                Resultados para: "<strong>@ViewBag.SearchString</strong>"
+            </small>
+            <a href="@Url.Action("Index")" class="btn btn-sm btn-outline-secondary ms-2">
+                <i class="fas fa-times"></i> Limpar
+            </a>
+        </div>
+    }
+</div>
+
+@if (Model.Any())
+{
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>
+                                <i class="fas fa-book me-2"></i>@Html.DisplayNameFor(model => model.Titulo)
+                            </th>
+                            <th>
+                                <i class="fas fa-align-left me-2"></i>@Html.DisplayNameFor(model => model.Descricao)
+                            </th>
+                            <th>
+                                <i class="fas fa-dollar-sign me-2"></i>@Html.DisplayNameFor(model => model.PrecoBase)
+                            </th>
+                            <th>
+                                <i class="fas fa-clock me-2"></i>@Html.DisplayNameFor(model => model.CargaHoraria)
+                            </th>
+                            <th>
+                                <i class="fas fa-users me-2"></i>Alunos
+                            </th>
+                            <th class="text-center">
+                                <i class="fas fa-cogs me-2"></i>Ações
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    <strong>@Html.DisplayFor(modelItem => item.Titulo)</strong>
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.Descricao))
+                                    {
+                                        <span title="@item.Descricao">
+                                            @(item.Descricao.Length > 50 ? item.Descricao.Substring(0, 50) + "..." : item.Descricao)
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Sem descrição</span>
+                                    }
+                                </td>
+                                <td>
+                                    <span class="fw-bold text-success">@item.PrecoBase.ToString("C")</span>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CargaHoraria)h
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        @item.QuantidadeAlunos
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Details" asp-route-id="@item.Id" 
+                                           class="btn btn-outline-info btn-sm" title="Detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" 
+                                           class="btn btn-outline-warning btn-sm" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="Matriculas" asp-action="Create" asp-route-cursoId="@item.Id"
+                                           class="btn btn-outline-success btn-sm" title="Nova Matrícula">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" 
+                                           class="btn btn-outline-danger btn-sm" title="Excluir">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card shadow-sm">
+        <div class="card-body text-center py-5">
+            <i class="fas fa-book fa-3x text-muted mb-3"></i>
+            @if (!string.IsNullOrEmpty(ViewBag.SearchString))
+            {
+                <h5>Nenhum curso encontrado</h5>
+                <p class="text-muted">Nenhum resultado encontrado para "<strong>@ViewBag.SearchString</strong>".</p>
+                <a href="@Url.Action("Index")" class="btn btn-outline-success me-2">
+                    <i class="fas fa-arrow-left"></i> Ver Todos
+                </a>
+            }
+            else
+            {
+                <h5>Nenhum curso cadastrado</h5>
+                <p class="text-muted">Comece criando o primeiro curso do sistema.</p>
+            }
+            <a asp-action="Create" class="btn btn-success">
+                <i class="fas fa-plus"></i> Cadastrar Primeiro Curso
+            </a>
+        </div>
+    </div>
+}

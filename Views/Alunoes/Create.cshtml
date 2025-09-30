@@ -1,0 +1,130 @@
+﻿@model MatriculasEAD.Models.Aluno
+
+@{
+    ViewData["Title"] = "Novo Aluno";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+        <i class="fas fa-user-plus text-info"></i> Cadastrar Novo Aluno
+    </h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Voltar para Lista
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-user-circle"></i> Informações do Aluno
+                </h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" class="needs-validation" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Por favor, corrija os erros abaixo:</strong>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label asp-for="Nome" class="form-label">
+                                <i class="fas fa-user me-1"></i>@Html.DisplayNameFor(m => m.Nome) <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Nome" class="form-control" placeholder="Digite o nome completo do aluno" required />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                            <div class="invalid-feedback">
+                                Por favor, informe o nome do aluno.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label asp-for="Email" class="form-label">
+                                <i class="fas fa-envelope me-1"></i>@Html.DisplayNameFor(m => m.Email) <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Email" class="form-control" type="email" placeholder="exemplo@email.com" required />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <div class="invalid-feedback">
+                                Por favor, informe um email válido.
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Telefone" class="form-label">
+                                <i class="fas fa-phone me-1"></i>@Html.DisplayNameFor(m => m.Telefone)
+                            </label>
+                            <input asp-for="Telefone" class="form-control" type="tel" placeholder="(11) 99999-9999" />
+                            <span asp-validation-for="Telefone" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-info">
+                            <i class="fas fa-save"></i> Salvar Aluno
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Informações adicionais -->
+        <div class="card mt-4 shadow-sm">
+            <div class="card-body">
+                <h6 class="card-title">
+                    <i class="fas fa-info-circle text-primary"></i> Informações Importantes
+                </h6>
+                <ul class="list-unstyled mb-0">
+                    <li><i class="fas fa-check text-success me-2"></i>Campos marcados com <span class="text-danger">*</span> são obrigatórios</li>
+                    <li><i class="fas fa-check text-success me-2"></i>O email deve ser único no sistema</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Após salvar, você poderá matricular o aluno em cursos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        // Validação Bootstrap 5
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+        // Formatação do telefone
+        document.getElementById('Telefone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 11) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            } else if (value.length >= 7) {
+                value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+            } else if (value.length >= 1) {
+                value = value.replace(/^(\d{0,2})/, '($1');
+            }
+            e.target.value = value;
+        });
+    </script>
+}

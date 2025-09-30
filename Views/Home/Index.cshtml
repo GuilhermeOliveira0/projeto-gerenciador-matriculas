@@ -1,0 +1,236 @@
+﻿@{
+    ViewData["Title"] = "Sistema de Matrículas EAD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Hero Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron bg-primary text-white rounded p-5 mb-4">
+                <div class="container">
+                    <h1 class="display-4">
+                        <i class="fas fa-graduation-cap"></i> Sistema de Matrículas EAD
+                    </h1>
+                    <p class="lead">
+                        Gerencie alunos, cursos e matrículas de forma eficiente e organizada.
+                    </p>
+                    <hr class="my-4">
+                    <p>
+                        Plataforma completa para administração de matrículas em cursos de Educação a Distância.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards de Funcionalidades -->
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-users fa-3x text-info"></i>
+                    </div>
+                    <h5 class="card-title">Gerenciar Alunos</h5>
+                    <p class="card-text">
+                        Cadastre, edite e visualize informações dos alunos. Mantenha dados atualizados de contato e histórico acadêmico.
+                    </p>
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Index", "Alunoes")" class="btn btn-info">
+                            <i class="fas fa-eye"></i> Ver Alunos
+                        </a>
+                        <a href="@Url.Action("Create", "Alunoes")" class="btn btn-outline-info">
+                            <i class="fas fa-plus"></i> Novo Aluno
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-book fa-3x text-success"></i>
+                    </div>
+                    <h5 class="card-title">Gerenciar Cursos</h5>
+                    <p class="card-text">
+                        Crie e administre cursos com informações detalhadas, preços e carga horária. Organize seu catálogo educacional.
+                    </p>
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Index", "Cursoes")" class="btn btn-success">
+                            <i class="fas fa-eye"></i> Ver Cursos
+                        </a>
+                        <a href="@Url.Action("Create", "Cursoes")" class="btn btn-outline-success">
+                            <i class="fas fa-plus"></i> Novo Curso
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-graduation-cap fa-3x text-warning"></i>
+                    </div>
+                    <h5 class="card-title">Gerenciar Matrículas</h5>
+                    <p class="card-text">
+                        Controle matrículas, acompanhe progresso dos alunos, gerencie status e avaliações dos cursos.
+                    </p>
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Index", "Matriculas")" class="btn btn-warning text-dark">
+                            <i class="fas fa-eye"></i> Ver Matrículas
+                        </a>
+                        <a href="@Url.Action("Create", "Matriculas")" class="btn btn-outline-warning">
+                            <i class="fas fa-plus"></i> Nova Matrícula
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar"></i> Visão Geral do Sistema
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <div class="border-end">
+                                <h3 class="text-info">
+                                    <i class="fas fa-users"></i>
+                                </h3>
+                                <h4 id="totalAlunos">-</h4>
+                                <p class="text-muted">Total de Alunos</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="border-end">
+                                <h3 class="text-success">
+                                    <i class="fas fa-book"></i>
+                                </h3>
+                                <h4 id="totalCursos">-</h4>
+                                <p class="text-muted">Total de Cursos</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="border-end">
+                                <h3 class="text-warning">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </h3>
+                                <h4 id="totalMatriculas">-</h4>
+                                <p class="text-muted">Total de Matrículas</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="text-primary">
+                                <i class="fas fa-medal"></i>
+                            </h3>
+                            <h4 id="matriculasConcluidas">-</h4>
+                            <p class="text-muted">Matrículas Concluídas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Links Rápidos -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt"></i> Ações Rápidas
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-search"></i> Buscar</h6>
+                            <div class="list-group list-group-flush">
+                                <a href="@Url.Action("Index", "Alunoes")" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-user-search"></i> Buscar Alunos
+                                </a>
+                                <a href="@Url.Action("Index", "Cursoes")" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-book-open"></i> Buscar Cursos
+                                </a>
+                                <a href="@Url.Action("Index", "Matriculas")" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-list"></i> Filtrar Matrículas
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-plus-circle"></i> Criar Novo</h6>
+                            <div class="list-group list-group-flush">
+                                <a href="@Url.Action("Create", "Alunoes")" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-user-plus"></i> Cadastrar Aluno
+                                </a>
+                                <a href="@Url.Action("Create", "Cursoes")" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-book-medical"></i> Criar Curso
+                                </a>
+                                <a href="@Url.Action("Create", "Matriculas")" class="list-group-item list-group-item-action">
+                                    <i class="fas fa-user-graduate"></i> Nova Matrícula
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dados de Exemplo (apenas para desenvolvimento) -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h6 class="mb-0">
+                        <i class="fas fa-tools"></i> Desenvolvimento - Dados de Exemplo
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">
+                        <i class="fas fa-info-circle text-warning"></i> 
+                        <strong>Para testar o sistema:</strong> Clique no botão abaixo para criar dados de exemplo (4 alunos, 4 cursos e 5 matrículas).
+                    </p>
+                    <div class="d-grid d-md-block">
+                        <a href="@Url.Action("CriarDadosExemplo", "Home")" class="btn btn-warning" 
+                           onclick="return confirm('Deseja criar dados de exemplo para testar o sistema?')">
+                            <i class="fas fa-database"></i> Criar Dados de Exemplo
+                        </a>
+                        <a href="@Url.Action("Diagnostico", "Matriculas")" class="btn btn-outline-secondary ms-2" target="_blank">
+                            <i class="fas fa-stethoscope"></i> Diagnóstico do Sistema
+                        </a>
+                    </div>
+                    <small class="text-muted d-block mt-2">
+                        <i class="fas fa-exclamation-triangle"></i> 
+                        Execute "Criar Dados de Exemplo" apenas uma vez. Use "Diagnóstico" para verificar a conexão com o banco de dados.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Carregar estatísticas via AJAX
+        $(document).ready(function() {
+            // Por enquanto, valores estáticos - depois implementar endpoints para dados reais
+            $('#totalAlunos').text('Loading...');
+            $('#totalCursos').text('Loading...');
+            $('#totalMatriculas').text('Loading...');
+            $('#matriculasConcluidas').text('Loading...');
+        });
+    </script>
+}

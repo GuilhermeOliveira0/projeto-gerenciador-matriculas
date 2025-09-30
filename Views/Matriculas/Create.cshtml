@@ -1,0 +1,213 @@
+﻿@using MatriculasEAD.Models
+@model MatriculasEAD.Models.Matricula
+
+@{
+    ViewData["Title"] = "Nova Matrícula";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+        <i class="fas fa-user-graduate text-warning"></i> Nova Matrícula
+    </h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Voltar para Lista
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">
+                    <i class="fas fa-graduation-cap"></i> Informações da Matrícula
+                </h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" class="needs-validation" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Por favor, corrija os erros abaixo:</strong>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="AlunoId" class="form-label">
+                                <i class="fas fa-user me-1"></i>Aluno <span class="text-danger">*</span>
+                            </label>
+                            <select asp-for="AlunoId" class="form-select" asp-items="ViewBag.AlunoId" required>
+                                <option value="">Selecione um aluno...</option>
+                            </select>
+                            <span asp-validation-for="AlunoId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="CursoId" class="form-label">
+                                <i class="fas fa-book me-1"></i>Curso <span class="text-danger">*</span>
+                            </label>
+                            <select asp-for="CursoId" class="form-select" asp-items="ViewBag.CursoId" required>
+                                <option value="">Selecione um curso...</option>
+                            </select>
+                            <span asp-validation-for="CursoId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Data" class="form-label">
+                                <i class="fas fa-calendar me-1"></i>@Html.DisplayNameFor(m => m.Data)
+                            </label>
+                            <input asp-for="Data" class="form-control" type="date" />
+                            <span asp-validation-for="Data" class="text-danger"></span>
+                            <div class="form-text">
+                                <i class="fas fa-info-circle"></i> Data da matrícula (padrão: hoje)
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="PrecoPago" class="form-label">
+                                <i class="fas fa-dollar-sign me-1"></i>@Html.DisplayNameFor(m => m.PrecoPago) <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">R$</span>
+                                <input asp-for="PrecoPago" class="form-control" type="number" step="0.01" min="0" required />
+                            </div>
+                            <span asp-validation-for="PrecoPago" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Status" class="form-label">
+                                <i class="fas fa-flag me-1"></i>@Html.DisplayNameFor(m => m.Status)
+                            </label>
+                            <select asp-for="Status" class="form-select" asp-items="Html.GetEnumSelectList<StatusMatricula>()">
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Progresso" class="form-label">
+                                <i class="fas fa-chart-line me-1"></i>@Html.DisplayNameFor(m => m.Progresso) (%)
+                            </label>
+                            <div class="input-group">
+                                <input asp-for="Progresso" class="form-control" type="number" min="0" max="100" />
+                                <span class="input-group-text">%</span>
+                            </div>
+                            <span asp-validation-for="Progresso" class="text-danger"></span>
+                            <div class="form-text">
+                                <i class="fas fa-info-circle"></i> Para finalizar a matrícula, o progresso deve ser 100%
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="NotaFinal" class="form-label">
+                                <i class="fas fa-star me-1"></i>@Html.DisplayNameFor(m => m.NotaFinal) (0-10)
+                            </label>
+                            <input asp-for="NotaFinal" class="form-control" type="number" step="0.1" min="0" max="10" />
+                            <span asp-validation-for="NotaFinal" class="text-danger"></span>
+                            <div class="form-text">
+                                <i class="fas fa-info-circle"></i> Opcional - Apenas para cursos com progresso 100%
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-warning text-dark">
+                            <i class="fas fa-save"></i> Salvar Matrícula
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Cards com Informações -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-info-circle text-primary"></i> Informações Importantes
+                        </h6>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="fas fa-check text-success me-2"></i>Campos marcados com <span class="text-danger">*</span> são obrigatórios</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Não é possível matricular o mesmo aluno duas vezes no mesmo curso</li>
+                            <li><i class="fas fa-check text-success me-2"></i>O preço pode ser diferente do preço base do curso</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-rules text-warning"></i> Regras de Negócio
+                        </h6>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="fas fa-exclamation text-warning me-2"></i>Status "Concluída" exige progresso = 100%</li>
+                            <li><i class="fas fa-exclamation text-warning me-2"></i>Nota final só pode ser definida com progresso = 100%</li>
+                            <li><i class="fas fa-exclamation text-warning me-2"></i>Progresso deve estar entre 0 e 100</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        // Validação Bootstrap 5
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        console.log('Form submetido');
+                        console.log('Form válido:', form.checkValidity());
+                        
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            console.log('Form inválido - prevenindo submit');
+                        } else {
+                            console.log('Form válido - permitindo submit');
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+        // Atualizar preço baseado no curso selecionado
+        $('#CursoId').change(function() {
+            var cursoId = $(this).val();
+            if (cursoId) {
+                // Aqui poderia fazer uma requisição AJAX para buscar o preço base do curso
+                // Por simplificação, deixando para implementação futura
+            }
+        });
+
+        // Validação mais simples - apenas avisos, não bloqueios
+        $('#NotaFinal').on('blur', function() {
+            var progresso = parseInt($('#Progresso').val()) || 0;
+            var notaFinal = $(this).val();
+            
+            if (notaFinal && progresso < 100) {
+                $(this).after('<small class="text-warning">Dica: Nota final é normalmente definida quando o progresso é 100%.</small>');
+            }
+        });
+
+        $('#Status').change(function() {
+            var status = $(this).val();
+            var progresso = parseInt($('#Progresso').val()) || 0;
+            
+            if (status === 'Concluida' && progresso < 100) {
+                $('#Progresso').focus();
+                alert('Dica: Para marcar como "Concluída", considere definir o progresso como 100%.');
+            }
+        });
+    </script>
+}
