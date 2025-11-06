@@ -51,7 +51,7 @@ namespace MatriculasEAD.Migrations
 
                     b.HasIndex("Nome");
 
-                    b.ToTable("Alunos");
+                    b.ToTable("Alunos", (string)null);
                 });
 
             modelBuilder.Entity("MatriculasEAD.Models.Curso", b =>
@@ -82,7 +82,7 @@ namespace MatriculasEAD.Migrations
 
                     b.HasIndex("Titulo");
 
-                    b.ToTable("Cursos");
+                    b.ToTable("Cursos", (string)null);
                 });
 
             modelBuilder.Entity("MatriculasEAD.Models.Matricula", b =>
@@ -115,7 +115,7 @@ namespace MatriculasEAD.Migrations
 
                     b.HasIndex("CursoId");
 
-                    b.ToTable("Matriculas");
+                    b.ToTable("Matriculas", (string)null);
                 });
 
             modelBuilder.Entity("MatriculasEAD.Models.Matricula", b =>

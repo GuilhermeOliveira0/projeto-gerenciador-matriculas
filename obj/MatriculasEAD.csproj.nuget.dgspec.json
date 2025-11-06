@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\MatriculasEAD\\MatriculasEAD.csproj": {}
+    "C:\\Users\\guilh\\OneDrive\\Documentos\\projeto-gerenciador-matriculas\\MatriculasEAD.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\MatriculasEAD\\MatriculasEAD.csproj": {
+    "C:\\Users\\guilh\\OneDrive\\Documentos\\projeto-gerenciador-matriculas\\MatriculasEAD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\MatriculasEAD\\MatriculasEAD.csproj",
+        "projectUniqueName": "C:\\Users\\guilh\\OneDrive\\Documentos\\projeto-gerenciador-matriculas\\MatriculasEAD.csproj",
         "projectName": "MatriculasEAD",
-        "projectPath": "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\MatriculasEAD\\MatriculasEAD.csproj",
+        "projectPath": "C:\\Users\\guilh\\OneDrive\\Documentos\\projeto-gerenciador-matriculas\\MatriculasEAD.csproj",
         "packagesPath": "C:\\Users\\guilh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\MatriculasEAD\\obj\\",
+        "outputPath": "C:\\Users\\guilh\\OneDrive\\Documentos\\projeto-gerenciador-matriculas\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

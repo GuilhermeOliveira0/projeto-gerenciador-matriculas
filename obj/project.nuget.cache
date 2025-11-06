@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "agHQniXAsPE=",
+  "dgSpecHash": "21A2kms2XAc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Área de Trabalho\\MatriculasEAD\\MatriculasEAD.csproj",
+  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Documentos\\projeto-gerenciador-matriculas\\MatriculasEAD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\guilh\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -1,0 +1,106 @@
+@model MatriculasEAD.Models.RegistroViewModel
+
+@{
+    ViewData["Title"] = "Cadastro";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MatriculasEAD</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .register-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            margin: 20px auto;
+        }
+        .register-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .btn-register {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            width: 100%;
+        }
+        .btn-register:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-card">
+        <h2 class="register-title">Sistema de Matrículas EAD</h2>
+        <h4 class="text-center mb-4">Criar Conta</h4>
+        
+        <form asp-action="Registro" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Nome" class="form-label">Nome</label>
+                <input asp-for="Nome" class="form-control" placeholder="Digite seu nome completo" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="seu@email.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Senha" class="form-label">Senha</label>
+                <input asp-for="Senha" class="form-control" type="password" placeholder="Mínimo 6 caracteres" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-4">
+                <label asp-for="ConfirmarSenha" class="form-label">Confirmar Senha</label>
+                <input asp-for="ConfirmarSenha" class="form-control" type="password" placeholder="Digite a senha novamente" />
+                <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <button type="submit" class="btn btn-register">Cadastrar</button>
+            </div>
+            
+            <div class="login-link">
+                <p class="mb-0">Já tem uma conta? <a asp-action="Login" class="fw-bold">Faça login aqui</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

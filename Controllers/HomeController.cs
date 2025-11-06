@@ -1,10 +1,12 @@
 using System.Diagnostics;
 using MatriculasEAD.Data;
 using MatriculasEAD.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MatriculasEAD.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
